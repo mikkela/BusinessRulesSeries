@@ -51,5 +51,11 @@ namespace AcceptanceTest
             Assert.True(browser.Div("InterestRate").Text.Contains(rate + " %"));
         }
 
+        [Then(@"the reason is '(.*)'")]
+        public void ThenTheReasonIsTProvideLoansToMinors(string reason)
+        {
+            Assert.True(browser.Div("Reason").Text.Contains(reason));
+        }
+
     }
 }

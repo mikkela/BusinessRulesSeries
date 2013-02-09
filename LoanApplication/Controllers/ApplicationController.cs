@@ -31,6 +31,8 @@ namespace LoanApplication.Controllers
                 ViewBag.Title = "The customer is rejected";
                 ViewBag.InterestRate = "No interest rate is provided";
             }
+
+            ViewBag.Reason = "No reason yet";
             return View();
         }
     }
