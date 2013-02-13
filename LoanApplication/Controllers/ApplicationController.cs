@@ -32,7 +32,7 @@ namespace LoanApplication.Controllers
                 ViewBag.InterestRate = "No interest rate is provided";
             }
 
-            ViewBag.Reason = "No reason yet";
+            ViewBag.Reason = new DryInterestCalculator().GetReason(age ?? 0);
             return View();
         }
     }
