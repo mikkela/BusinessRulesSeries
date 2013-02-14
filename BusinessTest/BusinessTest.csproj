@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessRulesInterestCalculatorTest.cs" />
     <Compile Include="DryInterestCalculatorTest.cs" />
     <Compile Include="InterestCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

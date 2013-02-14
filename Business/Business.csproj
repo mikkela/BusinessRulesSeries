@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessRulesInterestCalculator.cs" />
     <Compile Include="DryInterestCalculator.cs" />
     <Compile Include="InterestCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
