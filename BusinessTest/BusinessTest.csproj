@@ -46,7 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InterestCalculatorTest.cs" />
+    <Compile Include="MiddleAgedBusinessRuleTest.cs" />
+    <Compile Include="OldBusinessRuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleBasedInterestCalculatorTest.cs" />
+    <Compile Include="TestBase.cs" />
+    <Compile Include="UnderAgedBusinessRuleTest.cs" />
+    <Compile Include="YoungBusinessRuleTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

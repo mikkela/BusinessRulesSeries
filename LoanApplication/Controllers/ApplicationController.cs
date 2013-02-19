@@ -19,7 +19,7 @@ namespace LoanApplication.Controllers
 
         public ActionResult Apply(int? age)
         {
-            var interest = new InterestCalculator().CalculateInterestRate(age ?? 0);
+            var interest = new RuleBasedInterestCalculator().CalculateInterestRate(age ?? 0);
 
             if (interest.HasValue)
             {
@@ -32,7 +32,7 @@ namespace LoanApplication.Controllers
                 ViewBag.InterestRate = "No interest rate is provided";
             }
 
-            ViewBag.Reason = "No reason yet";
+            ViewBag.Reason = new RuleBasedInterestCalculator().GetReason(age ?? 0);
             return View();
         }
     }
