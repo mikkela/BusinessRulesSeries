@@ -1,6 +1,6 @@
 ﻿namespace Business
 {
-    public interface BusinessRule
+    public interface IBusinessRule
     {
         bool Evaluate();
     }

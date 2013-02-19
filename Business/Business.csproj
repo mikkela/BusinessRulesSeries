@@ -40,12 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgeCategorizingBusinessRule.cs" />
-    <Compile Include="BusinessRule.cs" />
+    <Compile Include="IBusinessRule.cs" />
     <Compile Include="InterestCalculator.cs" />
     <Compile Include="MiddleAgedBusinessRule.cs" />
     <Compile Include="OldBusinessRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuleBasedInterestCalculator.cs" />
+    <Compile Include="RuleListBasedInterestCalculator.cs" />
     <Compile Include="UnderAgedBusinessRule.cs" />
     <Compile Include="YoungBusinessRule.cs" />
   </ItemGroup>
