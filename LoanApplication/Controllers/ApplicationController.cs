@@ -19,12 +19,12 @@ namespace LoanApplication.Controllers
 
         public ActionResult Apply(int? age)
         {
-            var interest = new RuleBasedInterestCalculator().CalculateInterestRate(age ?? 0);
-
-            if (interest.HasValue)
+            var interest = new ReasonBasedInterestCalculator().CalculateInterestRate(age ?? 0);
+            var interestRate = interest.Item1;
+            if (interestRate.HasValue)
             {
                 ViewBag.Title = "The customer is accepted";
-                ViewBag.InterestRate = string.Format("The interest rate is set to: {0} %", interest.Value);
+                ViewBag.InterestRate = string.Format("The interest rate is set to: {0} %", interestRate.Value);
             }
             else
             {
@@ -32,7 +32,7 @@ namespace LoanApplication.Controllers
                 ViewBag.InterestRate = "No interest rate is provided";
             }
 
-            ViewBag.Reason = new RuleBasedInterestCalculator().GetReason(age ?? 0);
+            ViewBag.Reason = new ReasonBasedInterestCalculator().GetReasonForInterest(interest).Item1;
             return View();
         }
     }
