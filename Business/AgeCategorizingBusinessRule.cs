@@ -1,6 +1,6 @@
 ﻿namespace Business
 {
-    public abstract class AgeCategorizingBusinessRule : BusinessRule
+    public abstract class AgeCategorizingBusinessRule : IBusinessRule
     {
         protected AgeCategorizingBusinessRule(int currentAge, int minimumAge, int maximumAge)
         {
