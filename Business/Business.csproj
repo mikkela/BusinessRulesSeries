@@ -44,6 +44,8 @@
     <Compile Include="InterestCalculator.cs" />
     <Compile Include="MiddleAgedBusinessRule.cs" />
     <Compile Include="OldBusinessRule.cs" />
+    <Compile Include="Policy.cs" />
+    <Compile Include="PolicyResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReasonBasedInterestCalculator.cs" />
     <Compile Include="RuleBasedInterestCalculator.cs" />

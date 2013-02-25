@@ -1,4 +1,4 @@
-/**
+﻿/**
  * jQuery Validation Plugin 1.9.0
  *
  * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
@@ -377,7 +377,7 @@ $.extend($.validator, {
 						element: this.findByName(name)[0]
 					});
 				}
-				// remove items from success list
+				// remove items from Satisfied list
 				this.successList = $.grep( this.successList, function(element) {
 					return !(element.name in errors);
 				});
@@ -631,7 +631,7 @@ $.extend($.validator, {
 		showLabel: function(element, message) {
 			var label = this.errorsFor( element );
 			if ( label.length ) {
-				// refresh error/success class
+				// refresh error/Satisfied class
 				label.removeClass( this.settings.validClass ).addClass( this.settings.errorClass );
 
 				// check if we have a generated label, replace the message then

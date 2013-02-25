@@ -43,7 +43,7 @@ namespace BusinessTest
         {
             get
             {
-                return new AgeGenerator(18, 25);
+                return new AgeGenerator(YoungBusinessRule.MinimumAgeValue, YoungBusinessRule.MaximumAgeValue);
             }
         }
 
@@ -51,7 +51,7 @@ namespace BusinessTest
         {
             get
             {
-                return new AgeGenerator(26, 65);
+                return new AgeGenerator(MiddleAgedBusinessRule.MinimumAgeValue, MiddleAgedBusinessRule.MaximumAgeValue);
             }
         }
 
@@ -59,7 +59,7 @@ namespace BusinessTest
         {
             get
             {
-                return new AgeGenerator(66, 199);
+                return new AgeGenerator(OldBusinessRule.MinimumAgeValue, OldBusinessRule.MaximumAgeValue);
             }
         }
     }

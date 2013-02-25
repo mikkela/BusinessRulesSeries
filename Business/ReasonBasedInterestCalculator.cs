@@ -10,57 +10,40 @@ namespace Business
         {
             var reasonMap = new[]
                 {
-                    new {Rule = typeof (UnderAgedBusinessRule), Reason = "Because you are too young"},
-                    new {Rule = typeof (YoungBusinessRule), Reason = "Because you will party before you pay"},
-                    new {Rule = typeof (MiddleAgedBusinessRule), Reason = "Because you got family - we get security"},
-                    new {Rule = typeof (OldBusinessRule), Reason = "Because you are old"}
+                    new {RuleType = typeof (UnderAgedBusinessRule), Reason = "Because you are too young"},
+                    new {RuleType = typeof (YoungBusinessRule), Reason = "Because you will party before you pay"},
+                    new {RuleType = typeof (MiddleAgedBusinessRule), Reason = "Because you got family - we get security"},
+                    new {RuleType = typeof (OldBusinessRule), Reason = "Because you are old"}
                 };
 
             return
                 new Tuple<string, IBusinessRule>(
-                    reasonMap.Where(p => p.Rule == interest.Item2.GetType()).Select(p => p.Reason).First(),
+                    reasonMap.Where(p => p.RuleType == interest.Item2.GetType()).Select(p => p.Reason).First(),
                     interest.Item2);
         }
 
         public Tuple<int?, IBusinessRule> CalculateInterestRate(int age)
         {
-            Tuple<bool, IBusinessRule> isApplicantAccepted = IsApplicantAccepted(age);
-            if (!isApplicantAccepted.Item1)
-                return new Tuple<int?, IBusinessRule>(null, isApplicantAccepted.Item2);
-
-            var interestMap = new[]
+            var policies = new[]
                 {
-                    new {Rule = typeof (YoungBusinessRule), Rate = 25},
-                    new {Rule = typeof (MiddleAgedBusinessRule), Rate = 15},
-                    new {Rule = typeof (OldBusinessRule), Rate = 20}
+                    new Policy<int?>(new UnderAgedBusinessRule(age), null),
+                    new Policy<int?>(new YoungBusinessRule(age), 25),
+                    new Policy<int?>(new MiddleAgedBusinessRule(age), 15),
+                    new Policy<int?>(new OldBusinessRule(age), 20),
                 };
 
-            return
-                new Tuple<int?, IBusinessRule>(
-                    interestMap.Where(p => p.Rule == isApplicantAccepted.Item2.GetType()).Select(p => p.Rate).First(),
-                    isApplicantAccepted.Item2);
+            return EvaluatePolicies(policies)
+                .Select(p => new Tuple<int?, IBusinessRule>(p.Result, p.SupportingRule))
+                .FirstOrDefault();
+        
         }
 
-        public Tuple<bool, IBusinessRule> IsApplicantAccepted(int age)
+        private static IEnumerable<PolicyResult<TResult>> EvaluatePolicies<TResult>(IEnumerable<Policy<TResult>> policies)
         {
-            var acceptRules = new IBusinessRule[]
-                {new YoungBusinessRule(age), new MiddleAgedBusinessRule(age), new OldBusinessRule(age)};
-            var rejectRules = new IBusinessRule[] {new UnderAgedBusinessRule(age),};
-
-            return EvaluateStatement(acceptRules, rejectRules);
-        }
-
-        private Tuple<bool, IBusinessRule> EvaluateStatement(IEnumerable<IBusinessRule> acceptRules,
-                                                             IEnumerable<IBusinessRule> rejectRules)
-        {
-            IBusinessRule acceptMatch = acceptRules.FirstOrDefault(p => p.Evaluate());
-            if (acceptMatch != null)
-                return new Tuple<bool, IBusinessRule>(true, acceptMatch);
-            IBusinessRule rejectMatch = rejectRules.FirstOrDefault(p => p.Evaluate());
-            if (rejectMatch != null)
-                return new Tuple<bool, IBusinessRule>(false, rejectMatch);
-
-            throw new ArgumentException("No rules accepting or rejecting the statement");
+            return (from policy in policies
+                    let application = policy.Apply()
+                    where application.Satisfied
+                    select application);
         }
     }
 }

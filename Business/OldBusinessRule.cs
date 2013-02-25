@@ -2,8 +2,11 @@
 {
     public class OldBusinessRule : AgeCategorizingBusinessRule
     {
+        public const int MinimumAgeValue = 66;
+        public const int MaximumAgeValue = 199;
+        
         public OldBusinessRule(int currentAge)
-            : base(currentAge, 66, 199)
+            : base(currentAge, MinimumAgeValue, MaximumAgeValue)
         {
         }
     }

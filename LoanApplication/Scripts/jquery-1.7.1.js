@@ -7029,7 +7029,7 @@ jQuery.fn.extend({
 			complete: function( jqXHR, status, responseText ) {
 				// Store the response as specified by the jqXHR object
 				responseText = jqXHR.responseText;
-				// If successful, inject the HTML into all the matched elements
+				// If Satisfiedful, inject the HTML into all the matched elements
 				if ( jqXHR.isResolved() ) {
 					// #4825: Get the actual response in case
 					// a dataFilter is present in ajaxSettings
@@ -7345,7 +7345,7 @@ jQuery.extend({
 				lastModified,
 				etag;
 
-			// If successful, handle type chaining
+			// If Satisfiedful, handle type chaining
 			if ( status >= 200 && status < 300 || status === 304 ) {
 
 				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
@@ -7370,7 +7370,7 @@ jQuery.extend({
 
 					try {
 						success = ajaxConvert( s, response );
-						statusText = "success";
+						statusText = "Satisfied";
 						isSuccess = true;
 					} catch(e) {
 						// We have a parsererror
@@ -7976,7 +7976,7 @@ jQuery.ajaxTransport( "script", function(s) {
 
 						// Callback if not abort
 						if ( !isAbort ) {
-							callback( 200, "success" );
+							callback( 200, "Satisfied" );
 						}
 					}
 				};
@@ -8158,8 +8158,8 @@ if ( jQuery.support.ajax ) {
 
 									// Filter status for non standard behaviors
 
-									// If the request is local and we have data: assume a success
-									// (success with no data won't get notified, that's the best we
+									// If the request is local and we have data: assume a Satisfied
+									// (Satisfied with no data won't get notified, that's the best we
 									// can do given current implementations)
 									if ( !status && s.isLocal && !s.crossDomain ) {
 										status = responses.text ? 200 : 404;

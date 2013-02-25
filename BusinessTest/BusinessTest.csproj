@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,8 @@
     <Compile Include="InterestCalculatorTest.cs" />
     <Compile Include="MiddleAgedBusinessRuleTest.cs" />
     <Compile Include="OldBusinessRuleTest.cs" />
+    <Compile Include="PolicyResultTest.cs" />
+    <Compile Include="PolicyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReasonBasedInterestCalculatorTest.cs" />
     <Compile Include="RuleBasedInterestCalculatorTest.cs" />

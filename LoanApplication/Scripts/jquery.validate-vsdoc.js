@@ -1,4 +1,4 @@
-/*
+﻿/*
 * This file has been commented to support Visual Studio Intellisense.
 * You should not use this file at runtime inside the browser--it is only
 * intended to be used only for design-time IntelliSense.  Please use the
@@ -450,7 +450,7 @@ $.extend($.validator, {
 						element: this.findByName(name)[0]
 					});
 				}
-				// remove items from success list
+				// remove items from Satisfied list
 				this.successList = $.grep( this.successList, function(element) {
 					return !(element.name in errors);
 				});
@@ -724,7 +724,7 @@ $.extend($.validator, {
 		showLabel: function(element, message) {
 			var label = this.errorsFor( element );
 			if ( label.length ) {
-				// refresh error/success class
+				// refresh error/Satisfied class
 				label.removeClass().addClass( this.settings.errorClass );
 			
 				// check if we have a generated label, replace the message then
