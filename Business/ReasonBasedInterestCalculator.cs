@@ -6,7 +6,7 @@ namespace Business
 {
     public class ReasonBasedInterestCalculator
     {
-        public Tuple<string, IBusinessRule> GetReasonForInterest(Tuple<int?, IBusinessRule> interest)
+        public string GetReasonForInterest(PolicyResult<int?> interest)
         {
             var reasonMap = new[]
                 {
@@ -17,12 +17,10 @@ namespace Business
                 };
 
             return
-                new Tuple<string, IBusinessRule>(
-                    reasonMap.Where(p => p.RuleType == interest.Item2.GetType()).Select(p => p.Reason).First(),
-                    interest.Item2);
+                reasonMap.Where(p => p.RuleType == interest.SupportingRule.GetType()).Select(p => p.Reason).First();
         }
 
-        public Tuple<int?, IBusinessRule> CalculateInterestRate(int age)
+        public PolicyResult<int?> CalculateInterestRate(int age)
         {
             var policies = new[]
                 {
@@ -33,7 +31,6 @@ namespace Business
                 };
 
             return EvaluatePolicies(policies)
-                .Select(p => new Tuple<int?, IBusinessRule>(p.Result, p.SupportingRule))
                 .FirstOrDefault();
         
         }
