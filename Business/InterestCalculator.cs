@@ -6,20 +6,35 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public class InterestCalculator
+    public class InterestCalculator : IInterestCalculator
     {
-        public int? CalculateInterestRate(int age)
+        private readonly int age;
+
+        public InterestCalculator(int age)
         {
-            if (age < 18)
-                return null;
+            this.age = age;
+        }
 
-            if (age <= 25)
-                return 25;
+        public PolicyResult<int?> CalculateInterest()
+        {
+            var policies = new[]
+                {
+                    new Policy<int?>(new UnderAgedBusinessRule(age), null),
+                    new Policy<int?>(new YoungBusinessRule(age), 27),
+                    new Policy<int?>(new MiddleAgedBusinessRule(age), 17),
+                    new Policy<int?>(new OldBusinessRule(age), 22),
+                };
 
-            if (age <= 65)
-                return 15;
+            return EvaluatePolicies(policies)
+                .FirstOrDefault();
+        }
 
-            return 20;
+        private static IEnumerable<PolicyResult<TResult>> EvaluatePolicies<TResult>(IEnumerable<Policy<TResult>> policies)
+        {
+            return (from policy in policies
+                    let application = policy.Apply()
+                    where application.Satisfied
+                    select application);
         }
     }
 }

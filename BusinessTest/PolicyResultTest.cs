@@ -70,5 +70,41 @@ namespace BusinessTest
 
             Assert.Throws<InvalidOperationException>(() => result.Result);
         }
+
+        [Fact]
+        public void UpdateResult_returns_a_new_instance_of_the_policy_result()
+        {
+            var target = PolicyResult<int>.CreateSuccessResult(new Mock<IBusinessRule>().Object, 75);
+
+            Assert.NotSame(target, target.UpdateResult(67));
+        }
+
+        [Fact]
+        public void UpdateResult_returns_a_policy_result_with_the_new_result()
+        {
+            const int newValue = 6554;
+            var target = PolicyResult<int>.CreateSuccessResult(new Mock<IBusinessRule>().Object, newValue-342);
+            target = target.UpdateResult(newValue);
+
+            Assert.Equal(newValue, target.Result);
+        }
+
+        [Fact]
+        public void UpdateResult_returns_an_instance_with_the_same_supporting_business_rule_as_the_original()
+        {
+            var businessRule = new Mock<IBusinessRule>().Object;
+            var target = PolicyResult<int>.CreateSuccessResult(businessRule, 75);
+            target = target.UpdateResult(67);
+
+            Assert.Same(businessRule, target.SupportingRule);
+        }
+
+        [Fact]
+        public void UpdateResult_cannot_be_called_on_a_failed_result()
+        {
+            var target = PolicyResult<int>.CreateFailureResult(new Mock<IBusinessRule>().Object);
+            
+            Assert.Throws(typeof (InvalidOperationException), () => target.UpdateResult(67));
+        }
     }
 }

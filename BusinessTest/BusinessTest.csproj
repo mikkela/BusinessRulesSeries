@@ -57,6 +57,7 @@
     <Compile Include="ReasonBasedInterestCalculatorTest.cs" />
     <Compile Include="RuleBasedInterestCalculatorTest.cs" />
     <Compile Include="RuleListBasedInterestCalculatorTest.cs" />
+    <Compile Include="SexAdjustingInterestCalculatorDecoratorTest.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="UnderAgedBusinessRuleTest.cs" />
     <Compile Include="YoungBusinessRuleTest.cs" />

@@ -14,28 +14,28 @@ namespace BusinessTest
         [PropertyData("UnderAge")]
         public void The_interest_rate_of_a_under_age_person_is_null(int age)
         {
-            Assert.Null(new InterestCalculator().CalculateInterestRate(age));
+            Assert.Null(new InterestCalculator(age).CalculateInterest().Result);
         }
 
         [Theory]
         [PropertyData("Young")]
-        public void The_interest_rate_of_a_young_person_is_25(int age)
+        public void The_interest_rate_of_a_young_person_is_27(int age)
         {
-            Assert.Equal(25, new InterestCalculator().CalculateInterestRate(age));
+            Assert.Equal(27, new InterestCalculator(age).CalculateInterest().Result);
         }
 
         [Theory]
         [PropertyData("MiddleAged")]
-        public void The_interest_rate_of_a_middle_aged_person_is_15(int age)
+        public void The_interest_rate_of_a_middle_aged_person_is_17(int age)
         {
-            Assert.Equal(15, new InterestCalculator().CalculateInterestRate(age));
+            Assert.Equal(17, new InterestCalculator(age).CalculateInterest().Result);
         }
 
         [Theory]
         [PropertyData("Old")]
-        public void The_interest_rate_of_an_old_person_is_20(int age)
+        public void The_interest_rate_of_an_old_person_is_22(int age)
         {
-            Assert.Equal(20, new InterestCalculator().CalculateInterestRate(age));
+            Assert.Equal(22, new InterestCalculator(age).CalculateInterest().Result);
         }
     }
 }

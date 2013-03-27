@@ -34,8 +34,8 @@ namespace AcceptanceTest
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LoanApplication", "In order to serve my master corretcly\r\nAs a loan shark associate\r\nI want to be to" +
-                    "ld if an applicant can get a loan and at what interest rate", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LoanApplication", "In order to serve my master corretcly\nAs a loan shark associate\nI want to be told" +
+                    " if an applicant can get a loan and at what interest rate", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -96,21 +96,23 @@ this.ScenarioSetup(scenarioInfo);
         
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
-        [Xunit.TraitAttribute("Description", "Applicant is 18 years old")]
-        public virtual void ApplicantIs18YearsOld()
+        [Xunit.TraitAttribute("Description", "Applicant is 18 years old and a male")]
+        public virtual void ApplicantIs18YearsOldAndAMale()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 18 years old", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 18 years old and a male", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.Given("I have entered 18 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have chosen the sex to be \'male\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
- testRunner.And("the interest rate is 25 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
+ testRunner.And("the interest rate is 27 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
  testRunner.And("the reason is \'Because you will party before you pay\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -118,21 +120,23 @@ this.ScenarioSetup(scenarioInfo);
         
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
-        [Xunit.TraitAttribute("Description", "Applicant is 25 years old")]
-        public virtual void ApplicantIs25YearsOld()
+        [Xunit.TraitAttribute("Description", "Applicant is 18 years old and a female")]
+        public virtual void ApplicantIs18YearsOldAndAFemale()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 25 years old", ((string[])(null)));
-#line 20
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 18 years old and a female", ((string[])(null)));
 #line 21
- testRunner.Given("I have entered 25 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 22
- testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have entered 18 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 23
- testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I have chosen the sex to be \'female\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
- testRunner.And("the interest rate is 25 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.And("the interest rate is 22 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
  testRunner.And("the reason is \'Because you will party before you pay\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -140,43 +144,71 @@ this.ScenarioSetup(scenarioInfo);
         
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
-        [Xunit.TraitAttribute("Description", "Applicant is 26 years old")]
-        public virtual void ApplicantIs26YearsOld()
+        [Xunit.TraitAttribute("Description", "Applicant is 25 years old and male")]
+        public virtual void ApplicantIs25YearsOldAndMale()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 26 years old", ((string[])(null)));
-#line 27
-this.ScenarioSetup(scenarioInfo);
-#line 28
- testRunner.Given("I have entered 26 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 25 years old and male", ((string[])(null)));
 #line 29
- testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
 #line 30
- testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I have entered 25 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 31
- testRunner.And("the interest rate is 15 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have chosen the sex to be \'male\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
- testRunner.And("the reason is \'Because you got family - we get security\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.FactAttribute()]
-        [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
-        [Xunit.TraitAttribute("Description", "Applicant is 65 years old")]
-        public virtual void ApplicantIs65YearsOld()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 65 years old", ((string[])(null)));
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 33
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
-this.ScenarioSetup(scenarioInfo);
+ testRunner.And("the interest rate is 27 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
- testRunner.Given("I have entered 65 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 36
- testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the reason is \'Because you will party before you pay\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
+        [Xunit.TraitAttribute("Description", "Applicant is 25 years old and female")]
+        public virtual void ApplicantIs25YearsOldAndFemale()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 25 years old and female", ((string[])(null)));
 #line 37
- testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+this.ScenarioSetup(scenarioInfo);
 #line 38
- testRunner.And("the interest rate is 15 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have entered 25 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 39
+ testRunner.And("I have chosen the sex to be \'female\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 41
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+ testRunner.And("the interest rate is 22 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+ testRunner.And("the reason is \'Because you will party before you pay\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
+        [Xunit.TraitAttribute("Description", "Applicant is 26 years old and male")]
+        public virtual void ApplicantIs26YearsOldAndMale()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 26 years old and male", ((string[])(null)));
+#line 45
+this.ScenarioSetup(scenarioInfo);
+#line 46
+ testRunner.Given("I have entered 26 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 47
+ testRunner.And("I have chosen the sex to be \'male\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 48
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 49
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 50
+ testRunner.And("the interest rate is 17 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 51
  testRunner.And("the reason is \'Because you got family - we get security\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -184,21 +216,119 @@ this.ScenarioSetup(scenarioInfo);
         
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
-        [Xunit.TraitAttribute("Description", "Applicant is 66 years old")]
-        public virtual void ApplicantIs66YearsOld()
+        [Xunit.TraitAttribute("Description", "Applicant is 26 years old and female")]
+        public virtual void ApplicantIs26YearsOldAndFemale()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 66 years old", ((string[])(null)));
-#line 41
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 26 years old and female", ((string[])(null)));
+#line 53
 this.ScenarioSetup(scenarioInfo);
-#line 42
- testRunner.Given("I have entered 66 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 43
+#line 54
+ testRunner.Given("I have entered 26 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 55
+ testRunner.And("I have chosen the sex to be \'female\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
  testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 44
+#line 57
  testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 45
- testRunner.And("the interest rate is 20 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 46
+#line 58
+ testRunner.And("the interest rate is 12 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+ testRunner.And("the reason is \'Because you got family - we get security\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
+        [Xunit.TraitAttribute("Description", "Applicant is 65 years old and male")]
+        public virtual void ApplicantIs65YearsOldAndMale()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 65 years old and male", ((string[])(null)));
+#line 61
+this.ScenarioSetup(scenarioInfo);
+#line 62
+ testRunner.Given("I have entered 65 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 63
+ testRunner.And("I have chosen the sex to be \'male\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 65
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 66
+ testRunner.And("the interest rate is 17 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+ testRunner.And("the reason is \'Because you got family - we get security\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
+        [Xunit.TraitAttribute("Description", "Applicant is 65 years old and female")]
+        public virtual void ApplicantIs65YearsOldAndFemale()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 65 years old and female", ((string[])(null)));
+#line 69
+this.ScenarioSetup(scenarioInfo);
+#line 70
+ testRunner.Given("I have entered 65 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 71
+ testRunner.And("I have chosen the sex to be \'female\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 72
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 73
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 74
+ testRunner.And("the interest rate is 12 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
+ testRunner.And("the reason is \'Because you got family - we get security\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
+        [Xunit.TraitAttribute("Description", "Applicant is 66 years old and male")]
+        public virtual void ApplicantIs66YearsOldAndMale()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 66 years old and male", ((string[])(null)));
+#line 77
+this.ScenarioSetup(scenarioInfo);
+#line 78
+ testRunner.Given("I have entered 66 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 79
+ testRunner.And("I have chosen the sex to be \'male\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 80
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 81
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 82
+ testRunner.And("the interest rate is 22 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 83
+ testRunner.And("the reason is \'Because you are old\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "LoanApplication")]
+        [Xunit.TraitAttribute("Description", "Applicant is 66 years old and female")]
+        public virtual void ApplicantIs66YearsOldAndFemale()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Applicant is 66 years old and female", ((string[])(null)));
+#line 85
+this.ScenarioSetup(scenarioInfo);
+#line 86
+ testRunner.Given("I have entered 66 into the age field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 87
+ testRunner.And("I have chosen the sex to be \'female\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 88
+ testRunner.When("I press submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 89
+ testRunner.Then("the applicant is accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 90
+ testRunner.And("the interest rate is 17 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 91
  testRunner.And("the reason is \'Because you are old\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

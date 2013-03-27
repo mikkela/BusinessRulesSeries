@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgeCategorizingBusinessRule.cs" />
+    <Compile Include="DecoratorBasedInterestCalculator.cs" />
     <Compile Include="IBusinessRule.cs" />
+    <Compile Include="IInterestCalculator.cs" />
     <Compile Include="InterestCalculator.cs" />
     <Compile Include="MiddleAgedBusinessRule.cs" />
     <Compile Include="OldBusinessRule.cs" />
@@ -50,6 +52,8 @@
     <Compile Include="ReasonBasedInterestCalculator.cs" />
     <Compile Include="RuleBasedInterestCalculator.cs" />
     <Compile Include="RuleListBasedInterestCalculator.cs" />
+    <Compile Include="Sex.cs" />
+    <Compile Include="SexAdjustingInterestCalculatorDecorator.cs" />
     <Compile Include="UnderAgedBusinessRule.cs" />
     <Compile Include="YoungBusinessRule.cs" />
   </ItemGroup>

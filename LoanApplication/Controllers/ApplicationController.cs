@@ -17,9 +17,14 @@ namespace LoanApplication.Controllers
             return View();
         }
 
-        public ActionResult Apply(int? age)
+        public ActionResult Apply(int? age, string sex)
         {
-            var interest = new ReasonBasedInterestCalculator().CalculateInterestRate(age ?? 0);
+            Sex s;
+            Enum.TryParse(sex, true, out s);
+
+            var interest =
+                new SexAdjustingInterestCalculatorDecorator(s, new InterestCalculator(age ?? 0)).CalculateInterest();
+            
             var interestRate = interest.Result;
             if (interestRate.HasValue)
             {

@@ -31,6 +31,20 @@ namespace AcceptanceTest
             browser.TextField("Age").Value = age.ToString();
         }
 
+        [Given("I have chosen the sex to be '(male|female)'")]
+        public void GivenIHaveChosenASex(string sex)
+        {
+            if (sex == "male")
+            {
+                browser.RadioButton("Male").Checked = true;
+                browser.RadioButton("Female").Checked = false;
+            }
+            else {
+                browser.RadioButton("Male").Checked = false;
+                browser.RadioButton("Female").Checked = true;
+            }
+        }
+
         [When("I press submit")]
         public void WhenIPressSubmit()
         {
