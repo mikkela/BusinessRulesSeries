@@ -40,7 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgeCategorizingBusinessRule.cs" />
+    <Compile Include="BusinessRuleExpression.cs" />
+    <Compile Include="BusinessRuleExpressionEvaluationResult.cs" />
     <Compile Include="DecoratorBasedInterestCalculator.cs" />
+    <Compile Include="Fact.cs" />
     <Compile Include="IBusinessRule.cs" />
     <Compile Include="IInterestCalculator.cs" />
     <Compile Include="InterestCalculator.cs" />
@@ -50,6 +53,7 @@
     <Compile Include="PolicyResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReasonBasedInterestCalculator.cs" />
+    <Compile Include="ReferenceBusinessRuleExpression.cs" />
     <Compile Include="RuleBasedInterestCalculator.cs" />
     <Compile Include="RuleListBasedInterestCalculator.cs" />
     <Compile Include="Sex.cs" />
