@@ -50,16 +50,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndBusinessRuleExpressionTest.cs" />
     <Compile Include="InterestCalculatorTest.cs" />
     <Compile Include="MiddleAgedBusinessRuleTest.cs" />
+    <Compile Include="NotBusinessRuleExpressionTest.cs" />
     <Compile Include="OldBusinessRuleTest.cs" />
+    <Compile Include="OrBusinessRuleExpressionTest.cs" />
+    <Compile Include="PartHelper.cs" />
     <Compile Include="PolicyResultTest.cs" />
     <Compile Include="PolicyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReasonBasedInterestCalculatorTest.cs" />
     <Compile Include="ReferenceBusinessRuleExpressionTest.cs" />
-    <Compile Include="RuleBasedInterestCalculatorTest.cs" />
-    <Compile Include="RuleListBasedInterestCalculatorTest.cs" />
     <Compile Include="SexAdjustingInterestCalculatorDecoratorTest.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="UnderAgedBusinessRuleTest.cs" />

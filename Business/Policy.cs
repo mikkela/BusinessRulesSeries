@@ -8,20 +8,21 @@ namespace Business
 {
     public class Policy<TResult>
     {
-        public Policy(IBusinessRule rule, TResult result)
+        public Policy(BusinessRuleExpression expression, TResult result)
         {
             Result = result;
-            Rule = rule;
+            Expression = expression;
         }
 
-        public IBusinessRule Rule { get; private set;  }
+        public BusinessRuleExpression Expression { get; private set; }
         public TResult Result { get; private set; }
 
         public PolicyResult<TResult> Apply()
         {
-            return (Rule.Evaluate())
-                       ? PolicyResult<TResult>.CreateSuccessResult(Rule, Result)
-                       : PolicyResult<TResult>.CreateFailureResult(Rule);
+            var evaluation = Expression.Evaluate();
+            return (evaluation.Result)
+                       ? PolicyResult<TResult>.CreateSuccessResult(evaluation.Facts, Result)
+                       : PolicyResult<TResult>.CreateFailureResult(evaluation.Facts);
         }
     }
 }

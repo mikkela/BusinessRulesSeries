@@ -23,7 +23,7 @@ namespace LoanApplication.Controllers
             Enum.TryParse(sex, true, out s);
 
             var interest =
-                new SexAdjustingInterestCalculatorDecorator(s, new InterestCalculator(age ?? 0)).CalculateInterest();
+                new InterestCalculator(age ?? 0, s).CalculateInterest();
             
             var interestRate = interest.Result;
             if (interestRate.HasValue)
@@ -37,7 +37,7 @@ namespace LoanApplication.Controllers
                 ViewBag.InterestRate = "No interest rate is provided";
             }
 
-            ViewBag.Reason = new ReasonBasedInterestCalculator().GetReasonForInterest(interest);
+            ViewBag.Reason = new ReasonBasedInterestCalculator().GetReasonsForInterest(interest);
             return View();
         }
     }

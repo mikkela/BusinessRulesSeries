@@ -16,7 +16,12 @@
         </div>
         <br/>
         <div id="Reason">
-            @ViewBag.Reason
+            @foreach (var reason in @ViewBag.Reason)
+            {
+                @reason
+                <br/>
+            }
+            
         </div>
     </body>
 </html>

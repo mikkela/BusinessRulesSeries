@@ -14,29 +14,25 @@ namespace BusinessTest
         [Fact]
         public void CreateSuccessResult_returns_a_policy_result_with_Satisfied_true()
         {
-            var rule = new Mock<IBusinessRule>().Object;
-
-            var result = PolicyResult<int>.CreateSuccessResult(rule, 42);
+            var result = PolicyResult<int>.CreateSuccessResult(new Fact[0], 42);
 
             Assert.True(result.Satisfied);
         }
 
         [Fact]
-        public void CreateSuccessResult_returns_a_policy_result_with_SupportingRule_as_the_given_rule()
+        public void CreateSuccessResult_returns_a_policy_result_with_SupportingFacts_as_the_given_facts()
         {
-            var rule = new Mock<IBusinessRule>().Object;
+            var facts = new [] { new Fact(new Mock<IBusinessRule>().Object, true)};
 
-            var result = PolicyResult<int>.CreateSuccessResult(rule, 42);
+            var result = PolicyResult<int>.CreateSuccessResult(facts, 42);
 
-            Assert.Equal(rule, result.SupportingRule);
+            Assert.Equal(facts, result.SupportingFacts);
         }
 
         [Fact]
         public void CreateSuccessResult_returns_a_policy_result_with_Result_as_the_given_result()
         {
-            var rule = new Mock<IBusinessRule>().Object;
-
-            var result = PolicyResult<int>.CreateSuccessResult(rule, 42);
+            var result = PolicyResult<int>.CreateSuccessResult(new Fact[0], 42);
 
             Assert.Equal(42, result.Result);
         }
@@ -44,21 +40,19 @@ namespace BusinessTest
         [Fact]
         public void CreateFailureResult_returns_a_policy_result_with_Satisfied_false()
         {
-            var rule = new Mock<IBusinessRule>().Object;
-
-            var result = PolicyResult<int>.CreateFailureResult(rule);
+            var result = PolicyResult<int>.CreateFailureResult(new Fact[0]);
 
             Assert.False(result.Satisfied);
         }
 
         [Fact]
-        public void CreateFailureResult_returns_a_policy_result_with_SupportingRule_as_the_given_rule()
+        public void CreateFailureResult_returns_a_policy_result_with_SupportingFacts_as_the_given_rule()
         {
-            var rule = new Mock<IBusinessRule>().Object;
+            var facts = new[] { new Fact(new Mock<IBusinessRule>().Object, true) };
 
-            var result = PolicyResult<int>.CreateFailureResult(rule);
+            var result = PolicyResult<int>.CreateFailureResult(facts);
 
-            Assert.Equal(rule, result.SupportingRule);
+            Assert.Equal(facts, result.SupportingFacts);
         }
 
         [Fact]
@@ -66,7 +60,7 @@ namespace BusinessTest
         {
             var rule = new Mock<IBusinessRule>().Object;
 
-            var result = PolicyResult<int>.CreateFailureResult(rule);
+            var result = PolicyResult<int>.CreateFailureResult(new Fact[0]);
 
             Assert.Throws<InvalidOperationException>(() => result.Result);
         }
@@ -74,7 +68,7 @@ namespace BusinessTest
         [Fact]
         public void UpdateResult_returns_a_new_instance_of_the_policy_result()
         {
-            var target = PolicyResult<int>.CreateSuccessResult(new Mock<IBusinessRule>().Object, 75);
+            var target = PolicyResult<int>.CreateSuccessResult(new Fact[0], 75);
 
             Assert.NotSame(target, target.UpdateResult(67));
         }
@@ -83,7 +77,7 @@ namespace BusinessTest
         public void UpdateResult_returns_a_policy_result_with_the_new_result()
         {
             const int newValue = 6554;
-            var target = PolicyResult<int>.CreateSuccessResult(new Mock<IBusinessRule>().Object, newValue-342);
+            var target = PolicyResult<int>.CreateSuccessResult(new Fact[0], newValue - 342);
             target = target.UpdateResult(newValue);
 
             Assert.Equal(newValue, target.Result);
@@ -92,17 +86,18 @@ namespace BusinessTest
         [Fact]
         public void UpdateResult_returns_an_instance_with_the_same_supporting_business_rule_as_the_original()
         {
-            var businessRule = new Mock<IBusinessRule>().Object;
-            var target = PolicyResult<int>.CreateSuccessResult(businessRule, 75);
+            var facts = new[] { new Fact(new Mock<IBusinessRule>().Object, true) };
+
+            var target = PolicyResult<int>.CreateSuccessResult(facts, 75);
             target = target.UpdateResult(67);
 
-            Assert.Same(businessRule, target.SupportingRule);
+            Assert.Same(facts, target.SupportingFacts);
         }
 
         [Fact]
         public void UpdateResult_cannot_be_called_on_a_failed_result()
         {
-            var target = PolicyResult<int>.CreateFailureResult(new Mock<IBusinessRule>().Object);
+            var target = PolicyResult<int>.CreateFailureResult(new Fact[0]);
             
             Assert.Throws(typeof (InvalidOperationException), () => target.UpdateResult(67));
         }

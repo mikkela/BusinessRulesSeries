@@ -18,7 +18,7 @@ namespace Business
         public override BusinessRuleExpressionEvaluationResult Evaluate()
         {
             var result = _businessRule.Evaluate();
-            return new BusinessRuleExpressionEvaluationResult(result, new[] { new Fact(_businessRule, result), });
+            return new BusinessRuleExpressionEvaluationResult(result, new[] {new Fact(_businessRule, result),});
         }
     }
 }

@@ -26,5 +26,26 @@ namespace Business
         {
             get { return _isTrue; }
         }
+
+        protected bool Equals(Fact other)
+        {
+            return _businessRule.Equals(other._businessRule) && _isTrue.Equals(other._isTrue);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Fact) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (_businessRule.GetHashCode()*397) ^ _isTrue.GetHashCode();
+            }
+        }
     }
 }

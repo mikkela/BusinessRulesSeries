@@ -12,21 +12,21 @@ namespace BusinessTest
     public class PolicyTest
     {
         [Fact]
-        public void Ctor_Rule_is_initialized_correctly()
+        public void Ctor_Expression_is_initialized_correctly()
         {
-            var rule = new Mock<IBusinessRule>().Object;
+            var expression = new Mock<BusinessRuleExpression>().Object;
 
-            var target = new Policy<int>(rule, 23);
+            var target = new Policy<int>(expression, 23);
 
-            Assert.Equal(rule, target.Rule);
+            Assert.Equal(expression, target.Expression);
         }
 
         [Fact]
         public void Ctor_Result_is_initialized_correctly()
         {
-            var result = 453;
+            const int result = 453;
 
-            var target = new Policy<int>(new Mock<IBusinessRule>().Object, result);
+            var target = new Policy<int>(new Mock<BusinessRuleExpression>().Object, result);
 
             Assert.Equal(result, target.Result);
         }
@@ -34,10 +34,10 @@ namespace BusinessTest
         [Fact]
         public void Apply_returns_a_policy_result_with_success_if_the_business_rule_evaluates_to_true()
         {
-            var rule = new Mock<IBusinessRule>();
-            rule.Setup(p => p.Evaluate()).Returns(true);
+            var expression = new Mock<BusinessRuleExpression>();
+            expression.Setup(p => p.Evaluate()).Returns(new BusinessRuleExpressionEvaluationResult(true, new Fact[0]));
 
-            var target = new Policy<int>(rule.Object, 45);
+            var target = new Policy<int>(expression.Object, 45);
             var result = target.Apply();
 
             Assert.True(result.Satisfied);
@@ -46,10 +46,11 @@ namespace BusinessTest
         [Fact]
         public void Apply_returns_a_policy_result_without_success_if_the_business_rule_evaluates_to_false()
         {
-            var rule = new Mock<IBusinessRule>();
-            rule.Setup(p => p.Evaluate()).Returns(false);
+            var expression = new Mock<BusinessRuleExpression>();
+            expression.Setup(p => p.Evaluate()).Returns(new BusinessRuleExpressionEvaluationResult(true, new Fact[0]));
 
-            var target = new Policy<int>(rule.Object, 45);
+
+            var target = new Policy<int>(expression.Object, 45);
             var result = target.Apply();
 
             Assert.False(result.Satisfied);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Business
 {
@@ -13,7 +14,7 @@ namespace Business
   
         public bool Satisfied { get; private set; }
 
-        public IBusinessRule SupportingRule { get; private set; }
+        public IEnumerable<Fact> SupportingFacts { get; private set; }
 
         public TResult Result
         {
@@ -30,24 +31,24 @@ namespace Business
             if (!Satisfied)
                 throw new InvalidOperationException("The result of a failed policy result can not be updated");
             
-            return CreateSuccessResult(SupportingRule, newResult);
+            return CreateSuccessResult(SupportingFacts, newResult);
         }
 
-        public static PolicyResult<TResult> CreateSuccessResult(IBusinessRule businessRule, TResult result)
+        public static PolicyResult<TResult> CreateSuccessResult(IEnumerable<Fact> supportingFacts , TResult result)
         {
             return new PolicyResult<TResult>(result)
                 {
-                    SupportingRule = businessRule,
+                    SupportingFacts = supportingFacts,
                     Satisfied = true
                 };
         }
 
-        public static PolicyResult<TResult> CreateFailureResult(IBusinessRule businessRule)
+        public static PolicyResult<TResult> CreateFailureResult(IEnumerable<Fact> supportingFacts)
         {
             return new PolicyResult<TResult>(default(TResult))
                 {
                     Satisfied = false,
-                    SupportingRule = businessRule
+                    SupportingFacts = supportingFacts
                 };
         }
     }
