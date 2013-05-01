@@ -42,6 +42,7 @@
     <Compile Include="AgeCategorizingBusinessRule.cs" />
     <Compile Include="AndBusinessRuleExpression.cs" />
     <Compile Include="BusinessRuleExpression.cs" />
+    <Compile Include="BusinessRuleExpressionDSL.cs" />
     <Compile Include="BusinessRuleExpressionEvaluationResult.cs" />
     <Compile Include="CompositeBusinessRuleExpression.cs" />
     <Compile Include="DecoratorBusinessRuleExpression.cs" />

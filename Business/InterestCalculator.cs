@@ -8,12 +8,12 @@ namespace Business
 {
     public class InterestCalculator : IInterestCalculator
     {
-        private readonly int age;
+        private readonly int _age;
         private readonly Sex _sex;
 
         public InterestCalculator(int age, Sex sex)
         {
-            this.age = age;
+            _age = age;
             _sex = sex;
         }
 
@@ -21,13 +21,13 @@ namespace Business
         {
             var policies = new[]
                 {
-                    new Policy<int?>(new ReferenceBusinessRuleExpression(new UnderAgedBusinessRule(age)), null),
-                    new Policy<int?>(new AndBusinessRuleExpression(new [] { new ReferenceBusinessRuleExpression(new FemaleBusinessRule(_sex)), new ReferenceBusinessRuleExpression(new YoungBusinessRule(age)) }), 22),
-                    new Policy<int?>(new AndBusinessRuleExpression(new BusinessRuleExpression[] { new NotBusinessRuleExpression(new ReferenceBusinessRuleExpression(new FemaleBusinessRule(_sex))), new ReferenceBusinessRuleExpression(new YoungBusinessRule(age)) }), 27),
-                    new Policy<int?>(new AndBusinessRuleExpression(new [] { new ReferenceBusinessRuleExpression(new FemaleBusinessRule(_sex)), new ReferenceBusinessRuleExpression(new MiddleAgedBusinessRule(age)) }), 12),
-                    new Policy<int?>(new AndBusinessRuleExpression(new BusinessRuleExpression[] { new NotBusinessRuleExpression(new ReferenceBusinessRuleExpression(new FemaleBusinessRule(_sex))), new ReferenceBusinessRuleExpression(new MiddleAgedBusinessRule(age)) }), 17),
-                    new Policy<int?>(new AndBusinessRuleExpression(new [] { new ReferenceBusinessRuleExpression(new FemaleBusinessRule(_sex)), new ReferenceBusinessRuleExpression(new OldBusinessRule(age)) }), 17),
-                    new Policy<int?>(new AndBusinessRuleExpression(new BusinessRuleExpression[] { new NotBusinessRuleExpression(new ReferenceBusinessRuleExpression(new FemaleBusinessRule(_sex))), new ReferenceBusinessRuleExpression(new OldBusinessRule(age)) }), 22),
+                    new Policy<int?>(IsUnderaged(_age), null),
+                    new Policy<int?>(IsFemale(_sex) && IsYoung(_age), 22),
+                    new Policy<int?>(!IsFemale(_sex) & IsYoung(_age), 27),
+                    new Policy<int?>(IsFemale(_sex) & IsMiddleAged(_age), 12),
+                    new Policy<int?>(!IsFemale(_sex) & IsMiddleAged(_age), 17),
+                    new Policy<int?>(IsFemale(_sex) & IsOld(_age), 17),
+                    new Policy<int?>(!IsFemale(_sex) & IsOld(_age), 22),
                 };
 
             return EvaluatePolicies(policies)
@@ -41,5 +41,31 @@ namespace Business
                     where application.Satisfied
                     select application);
         }
+
+        private BusinessRuleExpressionDSL IsFemale(Sex sex)
+        {
+            return new BusinessRuleExpressionDSL(new ReferenceBusinessRuleExpression(new FemaleBusinessRule(sex)));
+        }
+
+        private BusinessRuleExpressionDSL IsUnderaged(int age)
+        {
+            return new BusinessRuleExpressionDSL(new ReferenceBusinessRuleExpression(new UnderAgedBusinessRule(age)));
+        }
+
+        private BusinessRuleExpressionDSL IsYoung(int age)
+        {
+            return new BusinessRuleExpressionDSL(new ReferenceBusinessRuleExpression(new YoungBusinessRule(age)));
+        }
+
+        private BusinessRuleExpressionDSL IsMiddleAged(int age)
+        {
+            return new BusinessRuleExpressionDSL(new ReferenceBusinessRuleExpression(new MiddleAgedBusinessRule(age)));
+        }
+
+        private BusinessRuleExpressionDSL IsOld(int age)
+        {
+            return new BusinessRuleExpressionDSL(new ReferenceBusinessRuleExpression(new OldBusinessRule(age)));
+        }
+
     }
 }
