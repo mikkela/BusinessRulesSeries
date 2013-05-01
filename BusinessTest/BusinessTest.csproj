@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndBusinessRuleExpressionTest.cs" />
+    <Compile Include="BusinessRuleExpressionDSLTest.cs" />
     <Compile Include="InterestCalculatorTest.cs" />
     <Compile Include="MiddleAgedBusinessRuleTest.cs" />
     <Compile Include="NotBusinessRuleExpressionTest.cs" />

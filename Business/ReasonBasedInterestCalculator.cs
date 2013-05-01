@@ -8,18 +8,28 @@ namespace Business
     {
         public IEnumerable<string> GetReasonsForInterest(PolicyResult<int?> interest)
         {
-            var reasonMap = new[]
+            var reasonMap = new Dictionary<Predicate<Fact>, string>
                 {
-                    new {RuleType = typeof (UnderAgedBusinessRule), Value = true, Reason = "Because you are too young"},
-                    new {RuleType = typeof (YoungBusinessRule), Value = true, Reason = "Because you will party before you pay"},
-                    new {RuleType = typeof (MiddleAgedBusinessRule), Value = true, Reason = "Because you got family - we get security"},
-                    new {RuleType = typeof (OldBusinessRule), Value = true, Reason = "Because you are old"},
-                    new {RuleType = typeof (FemaleBusinessRule), Value = true, Reason = "You are a foxy lady"},
-                    new {RuleType = typeof (FemaleBusinessRule), Value = false, Reason = "You are a dumb guy"}
+                    {IsSatisfied<UnderAgedBusinessRule>, "Because you are too young"},
+                    {IsSatisfied<YoungBusinessRule>, "Because you will party before you pay"},
+                    {IsSatisfied<MiddleAgedBusinessRule>, "Because you got family - we get security"},
+                    {IsSatisfied<OldBusinessRule>, "Because you are old"},
+                    {IsSatisfied<FemaleBusinessRule>, "You are a foxy lady"},
+                    {IsNotSatisfied<FemaleBusinessRule>, "You are a dumb guy"}
                 };
 
             return
-                reasonMap.Where(p => interest.SupportingFacts.Any(q => q.BusinessRule.GetType() == p.RuleType && q.IsTrue == p.Value)).Select(p => p.Reason);
+                reasonMap.Where(p => interest.SupportingFacts.Any(q => p.Key(q))).Select(p => p.Value);
+        }
+
+        private static bool IsSatisfied<TRule>(Fact fact) where TRule : IBusinessRule
+        {
+            return fact.BusinessRule is TRule && fact.IsTrue;
+        }
+
+        private static bool IsNotSatisfied<TRule>(Fact fact) where TRule : IBusinessRule
+        {
+            return fact.BusinessRule is TRule && !fact.IsTrue;
         }
     }
 }
