@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Business
 {
@@ -33,6 +34,15 @@ namespace Business
             
             return CreateSuccessResult(SupportingFacts, newResult);
         }
+
+        public PolicyResult<TResult> AddFact(Fact newFact)
+        {
+            if (!Satisfied)
+                throw new InvalidOperationException("The facts of a failed policy result can not be updated");
+
+            return CreateSuccessResult(SupportingFacts.Union(new [] {newFact}), Result);
+        }
+
 
         public static PolicyResult<TResult> CreateSuccessResult(IEnumerable<Fact> supportingFacts , TResult result)
         {

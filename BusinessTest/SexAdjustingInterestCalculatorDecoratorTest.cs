@@ -48,6 +48,18 @@ namespace BusinessTest
         }
 
         [Fact]
+        public void CalculateInterest_returns_a_fact_denoting_not_a_female_if_the_sex_is_male()
+        {
+            const int interestRate = 24;
+            var component = new Mock<IInterestCalculator>();
+            component.Setup(p => p.CalculateInterest()).Returns(PolicyResult<int?>.CreateSuccessResult(new Fact[] { }, interestRate));
+
+            var target = new SexAdjustingInterestCalculatorDecorator(Sex.Male, component.Object);
+
+            Assert.True(target.CalculateInterest().SupportingFacts.Any(p => p.BusinessRule is FemaleBusinessRule && !p.IsTrue));
+        }
+
+        [Fact]
         public void CalculateInterest_returns_the_result_minus_5_percent_point_if_the_sex_is_female()
         {
             const int interestRate = 24;
@@ -57,6 +69,18 @@ namespace BusinessTest
             var target = new SexAdjustingInterestCalculatorDecorator(Sex.Female, component.Object);
 
             Assert.Equal(19, target.CalculateInterest().Result);
+        }
+
+        [Fact]
+        public void CalculateInterest_returns_a_fact_denoting_a_female_if_the_sex_is_female()
+        {
+            const int interestRate = 24;
+            var component = new Mock<IInterestCalculator>();
+            component.Setup(p => p.CalculateInterest()).Returns(PolicyResult<int?>.CreateSuccessResult(new Fact[] { }, interestRate));
+
+            var target = new SexAdjustingInterestCalculatorDecorator(Sex.Female, component.Object);
+
+            Assert.True(target.CalculateInterest().SupportingFacts.Any(p => p.BusinessRule is FemaleBusinessRule && p.IsTrue));
         }
 
         [Fact]

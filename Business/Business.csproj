@@ -45,6 +45,7 @@
     <Compile Include="BusinessRuleExpressionDSL.cs" />
     <Compile Include="BusinessRuleExpressionEvaluationResult.cs" />
     <Compile Include="CompositeBusinessRuleExpression.cs" />
+    <Compile Include="DecoratingPolicy.cs" />
     <Compile Include="DecoratorBusinessRuleExpression.cs" />
     <Compile Include="Fact.cs" />
     <Compile Include="FemaleBusinessRule.cs" />
